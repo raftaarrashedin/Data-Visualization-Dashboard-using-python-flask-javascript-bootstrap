@@ -1,16 +1,28 @@
+#-----------------------------------------------------
+#-----------------------------------------------------
+#-----------------------------------------------------
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from pymongo import MongoClient
 
+#-----------------------------------------------------
+#-----------------------------------------------------
+#-----------------------------------------------------
 app = Flask(__name__)
 CORS(app)
 
+#-----------------------------------------------------
+#-----------------------------------------------------
+#-----------------------------------------------------
 # Connect to MongoDB
 uri = "mongodb+srv://raftaarrashedin_mongodb:mUaDMb3FqKsY_Nd@cluster0.rro8gtk.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(uri)
 db = client.get_database("mongoDB_pkg")
 collection = db["dashboard_data"]
 
+#-----------------------------------------------------
+#-----------------------------------------------------
+#-----------------------------------------------------
 # Define a simple root endpoint
 @app.route("/", methods=["GET"])
 def index():
@@ -27,9 +39,12 @@ def index():
     # Convert ObjectId to string representation
     for item in result:
         item["_id"] = str(item["_id"])
-        
+
     return jsonify({"data": result})
 
+#-----------------------------------------------------
+#-----------------------------------------------------
+#-----------------------------------------------------
 # Check connection endpoint
 @app.route("/check_connection", methods=["GET"])
 def check_connection():
@@ -40,6 +55,9 @@ def check_connection():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+#-----------------------------------------------------
+#-----------------------------------------------------
+#-----------------------------------------------------
 # running app
 if __name__ == "__main__":
     app.run(debug=True)
