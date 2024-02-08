@@ -10,11 +10,13 @@ Pinged your deployment. You successfully connected to MongoDB!
 
 # DAY 2
 ```
-
+```
 activate virtual_env
 python app.py
 pip install flask_cors
 python app.py
+```
+```
 type nul > __init__.py
 mkdir templates
 cd templates
@@ -39,6 +41,8 @@ type nul > charts.js
 cd..
 type nul > models.py
 type nul > config.py
+```
+```
 python app.py
 git add . && git commit -m "folder structure updated" && git push origin main
 git add . && git commit -m "fetched data from the mongoDb database" && git push origin main
